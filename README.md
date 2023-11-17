@@ -1,6 +1,6 @@
 # MAF-Stereo
 environment:  
-$\qquad python=3.9.18  
-$\qquad pytorch=2.1.0  
-$\qquad timm=0.5.4  
-$\qquad NVIDIA Tesla V100 32GB  
+$\qquadpython=3.9.18  
+$\qquadpytorch=2.1.0  
+$\qquadtimm=0.5.4  
+$\qquadNVIDIA Tesla V100 32GB  
