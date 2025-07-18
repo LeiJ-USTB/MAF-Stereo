@@ -29,8 +29,8 @@ parser.add_argument('--model', default='MAF_Stereo', help='select a model struct
 parser.add_argument('--maxdisp', type=int, default=192, help='maximum disparity')
 
 parser.add_argument('--dataset', default='kitti', help='dataset name', choices=__datasets__.keys())
-parser.add_argument('--datapath_12', default="/jinlei/dataset/Kitti2012/", help='data path')
-parser.add_argument('--datapath_15', default="/jinlei/dataset/Kitti2015/", help='data path')
+parser.add_argument('--datapath_12', default="/dataset/jinlei/Kitti2012/", help='data path')
+parser.add_argument('--datapath_15', default="/dataset/jinlei/Kitti2015/", help='data path')
 parser.add_argument('--trainlist', default='./filenames/kitti12_15_all.txt', help='training list')
 parser.add_argument('--testlist', default='./filenames/kitti15_val.txt', help='testing list')
 
@@ -41,7 +41,7 @@ parser.add_argument('--epochs', type=int, default=1000, help='number of epochs t
 parser.add_argument('--lrepochs', type=str, default="300:10", help='the epochs to decay lr: the downscale rate')
 
 parser.add_argument('--logdir', default='./log/kitti/', help='the directory to save logs and checkpoints')
-parser.add_argument('--loadckpt', default='./log/sceneflow/best/checkpoint_000063.ckpt',
+parser.add_argument('--loadckpt', default='./log/sceneflow.ckpt',
                     help='load the weights from a specific checkpoint')
 parser.add_argument('--resume', action='store_true', help='continue training the model')
 parser.add_argument('--seed', type=int, default=7, metavar='S', help='random seed')

@@ -18,9 +18,9 @@ parser = argparse.ArgumentParser(
     description='Fast Stereo Matching through Multi-level Attention Fusion(MAF-Stereo)')
 parser.add_argument('--model', default='MAF_Stereo', help='select a model structure', choices=__models__.keys())
 parser.add_argument('--maxdisp', type=int, default=192, help='maximum disparity')
-parser.add_argument('--datapath', default="/jinlei/dataset/Kitti2015/training/", help='data path')
+parser.add_argument('--datapath', default="/dataset/jinlei/Kitti2015/training/", help='data path')
 parser.add_argument('--kitti', type=str, default='2015')
-parser.add_argument('--loadckpt', default='/jinlei/Jin/log/sceneflow/best/checkpoint_000063.ckpt',
+parser.add_argument('--loadckpt', default='./log/sceneflow.ckpt',
                     help='load the weights from a specific checkpoint')
 
 args = parser.parse_args()

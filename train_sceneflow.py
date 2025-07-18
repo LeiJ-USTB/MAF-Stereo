@@ -25,14 +25,14 @@ parser.add_argument('--model', default='MAF_Stereo', help='select a model struct
 parser.add_argument('--maxdisp', type=int, default=192, help='maximum disparity')
 
 parser.add_argument('--dataset', default='sceneflow', help='dataset name', choices=__datasets__.keys())
-parser.add_argument('--datapath', default="/jinlei/dataset/SceneFlow/", help='data path')
+parser.add_argument('--datapath', default="/home/data/jinlei/dataset/stereo/SceneFlow/", help='data path')
 parser.add_argument('--trainlist', default='./filenames/sceneflow_train.txt', help='training list')
 parser.add_argument('--testlist', default='./filenames/sceneflow_test.txt', help='testing list')
 
 parser.add_argument('--lr', type=float, default=0.001, help='base learning rate')
 parser.add_argument('--batch_size', type=int, default=20, help='training batch size')
 parser.add_argument('--test_batch_size', type=int, default=20, help='testing batch size')
-parser.add_argument('--epochs', type=int, default=1, help='number of epochs to train')
+parser.add_argument('--epochs', type=int, default=64, help='number of epochs to train')
 
 parser.add_argument('--logdir', default='./log/sceneflow/test/', help='the directory to save logs and checkpoints')
 parser.add_argument('--loadckpt', default=None, help='load the weights from a specific checkpoint')

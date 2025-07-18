@@ -14,6 +14,7 @@ from torch.utils.data import DataLoader
 from datasets import __datasets__
 from models import __models__
 from utils import *
+import cv2
 
 # cudnn.benchmark = True
 
@@ -24,10 +25,10 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--model', default='MAF_Stereo', help='select a model structure', choices=__models__.keys())
 parser.add_argument('--maxdisp', type=int, default=192, help='maximum disparity')
 parser.add_argument('--dataset', default='kitti', help='dataset name', choices=__datasets__.keys())
-parser.add_argument('--datapath_12', default="/jinlei/dataset/Kitti2012/", help='data path')
-parser.add_argument('--datapath_15', default="/jinlei/dataset/Kitti2015/", help='data path')
-parser.add_argument('--testlist', default='./filenames/kitti12_test.txt', help='testing list')
-parser.add_argument('--loadckpt', default='./log/kitti/seed/7/checkpoint_000999.ckpt',
+parser.add_argument('--datapath_12', default="/home/data/jinlei/data/stereo/Kitti2012/", help='data path')
+parser.add_argument('--datapath_15', default="/home/data/jinlei/data/stereo/Kitti2015/", help='data path')
+parser.add_argument('--testlist', default='./filenames/kitti15_test.txt', help='testing list')
+parser.add_argument('--loadckpt', default='./log/kitti.ckpt',
                     help='load the weights from a specific checkpoint')
 # parse arguments
 args = parser.parse_args()
@@ -70,8 +71,8 @@ def test():
             fn = os.path.join(save_dir, fn.split('/')[-1])
             print("saving to", fn, disp_est.shape)
             disp_est_uint = np.round(disp_est * 256).astype(np.uint16)
-            skimage.io.imsave(fn, disp_est_uint)
-            # cv2.imwrite(fn, cv2.applyColorMap(cv2.convertScaleAbs(disp_est_uint, alpha=0.01),cv2.COLORMAP_JET), [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
+            # skimage.io.imsave(fn, disp_est_uint)
+            cv2.imwrite(fn, cv2.applyColorMap(cv2.convertScaleAbs(disp_est_uint, alpha=0.01),cv2.COLORMAP_JET), [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
 
 
 # test one sample

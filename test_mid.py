@@ -24,9 +24,9 @@ parser = argparse.ArgumentParser(
     description='Fast Stereo Matching through Multi-level Attention Fusion(MAF-Stereo)')
 parser.add_argument('--model', default='MAF_Stereo', help='select a model structure', choices=__models__.keys())
 parser.add_argument('--maxdisp', type=int, default=192, help='maximum disparity')
-parser.add_argument('--datapath', default="/jinlei/dataset/Middlebury/", help='data path')
+parser.add_argument('--datapath', default="/home/data/jinlei/dataset/stereo/Middlebury/", help='data path')
 parser.add_argument('--resolution', type=str, default='H')
-parser.add_argument('--loadckpt', default='/jinlei/Jin/log/sceneflow/best/checkpoint_000063.ckpt',
+parser.add_argument('--loadckpt', default='./log/sceneflow.ckpt',
                     help='load the weights from a specific checkpoint')
 
 # parse arguments
@@ -41,7 +41,7 @@ state_dict = torch.load(args.loadckpt)
 model.load_state_dict(state_dict['model'])
 model.eval()
 
-os.makedirs('./demo/middlebury/', exist_ok=True)
+os.makedirs('./demo/middlebury/' + str(args.resolution), exist_ok=True)
 
 
 def test_trainset():
@@ -98,7 +98,7 @@ def test_trainset():
 
         #######save
 
-        filename = os.path.join('./demo/middlebury/', limg_path.split('/')[-2] + limg_path.split('/')[-1])
+        filename = os.path.join('./demo/middlebury/' + str(args.resolution), limg_path.split('/')[-2] + limg_path.split('/')[-1])
         pred_np_save = np.round(pred_np * 256).astype(np.uint16)
         cv2.imwrite(filename, cv2.applyColorMap(cv2.convertScaleAbs(pred_np_save, alpha=0.01), cv2.COLORMAP_JET),
                     [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
